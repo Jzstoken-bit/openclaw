@@ -95,6 +95,16 @@ OpenClaw uses `jzstoken/<model-id>`, where `<model-id>` is the exact ID from the
 [JZSTOKEN model catalog](https://jzstoken.com/model-pricing). To inspect the
 models available to your key:
 
+The Gateway reads `JZSTOKEN_API_KEY` from `~/.openclaw/.env`, but that file is
+not automatically loaded into your current shell. Prompt for the key without
+echoing it or adding it to shell history, then call the catalog endpoint:
+
+```bash
+read -rsp "JZSTOKEN_API_KEY: " JZSTOKEN_API_KEY
+export JZSTOKEN_API_KEY
+printf '\n'
+```
+
 ```bash
 curl https://jzstoken.com/api/v1/models \
   -H "Authorization: Bearer $JZSTOKEN_API_KEY"
